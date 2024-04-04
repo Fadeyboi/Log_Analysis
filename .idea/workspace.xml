@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f9806cb-509e-4cd8-b37e-ae0d7b9d99bf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/ScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="3f9806cb-509e-4cd8-b37e-ae0d7b9d99bf" name="Changes" comment="Added a sorting function using a comboBox">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/FilePathController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/FilePathController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/file-path.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/file-path.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log-analysis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log-analysis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log2.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +23,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Fadeyboi"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="047a14b2-a95f-4c80-af58-8546c8d31ab1" />
+        <option name="url" value="https://github.com/Fadeyboi/Log_Analysis.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -86,8 +92,17 @@
       <workItem from="1712085143747" duration="271000" />
       <workItem from="1712086110454" duration="11001000" />
       <workItem from="1712098931897" duration="3690000" />
-      <workItem from="1712255482861" duration="12804000" />
+      <workItem from="1712255482861" duration="14974000" />
     </task>
+    <task id="LOCAL-00001" summary="Added a sorting function using a comboBox">
+      <option name="closed" value="true" />
+      <created>1712269047148</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712269047148</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,5 +110,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added a sorting function using a comboBox" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a sorting function using a comboBox" />
   </component>
 </project>

@@ -58,11 +58,12 @@ public class LogAnalysisController implements Initializable {
             String commandAttribute = splitAttribute[0];
             String filterAttribute = splitCommand[1];
             filterAttribute = filterAttribute.substring(1, filterAttribute.length()-1);
+            System.out.println(filterAttribute);
             switch (commandAttribute.trim()){
                 case "url":
                     if (filteredLogRecords.isEmpty()) {
                         for (LogRecord logRecord : logRecords) {
-                            if (logRecord.getURL().equals(filterAttribute)) {
+                            if (logRecord.getURL().equalsIgnoreCase(filterAttribute)) {
                                 filteredLogRecords.add(logRecord);
                             }
                         }
@@ -71,7 +72,7 @@ public class LogAnalysisController implements Initializable {
                         Iterator<LogRecord> iterator = filteredLogRecords.iterator();
                         while (iterator.hasNext()) {
                             LogRecord logRecord = iterator.next();
-                            if (!logRecord.getURL().equals(filterAttribute)) {
+                            if (!logRecord.getURL().equalsIgnoreCase(filterAttribute)) {
                                 iterator.remove();
                             }
                         }
@@ -88,7 +89,7 @@ public class LogAnalysisController implements Initializable {
                 case "ipaddress":
                     if (filteredLogRecords.isEmpty()) {
                         for (LogRecord logRecord : logRecords) {
-                            if (logRecord.getIPAddress().equals(filterAttribute)) {
+                            if (logRecord.getIPAddress().equalsIgnoreCase(filterAttribute)) {
                                 filteredLogRecords.add(logRecord);
                             }
                         }
@@ -97,7 +98,7 @@ public class LogAnalysisController implements Initializable {
                         Iterator<LogRecord> iterator = filteredLogRecords.iterator();
                         while (iterator.hasNext()) {
                             LogRecord logRecord = iterator.next();
-                            if (!logRecord.getIPAddress().equals(filterAttribute)) {
+                            if (!logRecord.getIPAddress().equalsIgnoreCase(filterAttribute)) {
                                 iterator.remove();
                             }
                         }
@@ -114,8 +115,10 @@ public class LogAnalysisController implements Initializable {
                 case "description":
                     if (filteredLogRecords.isEmpty()) {
                         for (LogRecord logRecord : logRecords) {
-                            if (logRecord.getDescription().equals(filterAttribute)) {
-                                filteredLogRecords.add(logRecord);
+                            if (logRecord.getDescription() != null) {
+                                if (logRecord.getDescription().equalsIgnoreCase(filterAttribute)) {
+                                    filteredLogRecords.add(logRecord);
+                                }
                             }
                         }
                     }
@@ -123,7 +126,7 @@ public class LogAnalysisController implements Initializable {
                         Iterator<LogRecord> iterator = filteredLogRecords.iterator();
                         while (iterator.hasNext()) {
                             LogRecord logRecord = iterator.next();
-                            if (!logRecord.getDescription().equals(filterAttribute)) {
+                            if (!logRecord.getDescription().equalsIgnoreCase(filterAttribute)) {
                                 iterator.remove();
                             }
                         }
@@ -140,7 +143,7 @@ public class LogAnalysisController implements Initializable {
                 case "role":
                     if (filteredLogRecords.isEmpty()) {
                         for (LogRecord logRecord : logRecords) {
-                            if (logRecord.getRole().equals(filterAttribute)) {
+                            if (logRecord.getRole().equalsIgnoreCase(filterAttribute)) {
                                 filteredLogRecords.add(logRecord);
                             }
                         }
@@ -149,7 +152,7 @@ public class LogAnalysisController implements Initializable {
                         Iterator<LogRecord> iterator = filteredLogRecords.iterator();
                         while (iterator.hasNext()) {
                             LogRecord logRecord = iterator.next();
-                            if (!logRecord.getRole().equals(filterAttribute)) {
+                            if (!logRecord.getRole().equalsIgnoreCase(filterAttribute)) {
                                 iterator.remove();
                             }
                         }
@@ -166,7 +169,7 @@ public class LogAnalysisController implements Initializable {
                 case "username":
                     if (filteredLogRecords.isEmpty()) {
                         for (LogRecord logRecord : logRecords) {
-                            if (logRecord.getUsername().equals(filterAttribute)) {
+                            if (logRecord.getUsername().equalsIgnoreCase(filterAttribute)) {
                                 filteredLogRecords.add(logRecord);
                             }
                         }
@@ -175,7 +178,7 @@ public class LogAnalysisController implements Initializable {
                         Iterator<LogRecord> iterator = filteredLogRecords.iterator();
                         while (iterator.hasNext()) {
                             LogRecord logRecord = iterator.next();
-                            if (!logRecord.getUsername().equals(filterAttribute)) {
+                            if (!logRecord.getUsername().equalsIgnoreCase(filterAttribute)) {
                                 iterator.remove();
                             }
                         }
@@ -195,8 +198,171 @@ public class LogAnalysisController implements Initializable {
             String[] splitCommand = command.split(" ");
             String comparisonOperator = splitCommand[1];
             String date = splitCommand[2].substring(1, splitCommand[2].length()-1);
-            System.out.println(comparisonOperator);
-            System.out.println(date);
+            switch (comparisonOperator){
+                case "=":
+                    if (filteredLogRecords.isEmpty()) {
+                        for (LogRecord logRecord : logRecords) {
+                            if (logRecord.getDate().equals(date)) {
+                                filteredLogRecords.add(logRecord);
+                            }
+                        }
+                    }
+                    else {
+                        Iterator<LogRecord> iterator = filteredLogRecords.iterator();
+                        while (iterator.hasNext()) {
+                            LogRecord logRecord = iterator.next();
+                            if (!logRecord.getDate().equals(date)) {
+                                iterator.remove();
+                            }
+                        }
+                    }
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                    break;
+                case "<":
+                    if (filteredLogRecords.isEmpty()) {
+                        for (LogRecord logRecord : logRecords) {
+                            if (logRecord.getDate().compareTo(date) < 0) {
+                                filteredLogRecords.add(logRecord);
+                            }
+                        }
+                    }
+                    else {
+                        Iterator<LogRecord> iterator = filteredLogRecords.iterator();
+                        while (iterator.hasNext()) {
+                            LogRecord logRecord = iterator.next();
+                            if (logRecord.getDate().compareTo(date) >= 0) {
+                                iterator.remove();
+                            }
+                        }
+                    }
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                    break;
+                case ">":
+                    if (filteredLogRecords.isEmpty()) {
+                        for (LogRecord logRecord : logRecords) {
+                            if (logRecord.getDate().compareTo(date) > 0) {
+                                filteredLogRecords.add(logRecord);
+                            }
+                        }
+                    }
+                    else {
+                        Iterator<LogRecord> iterator = filteredLogRecords.iterator();
+                        while (iterator.hasNext()) {
+                            LogRecord logRecord = iterator.next();
+                            if (logRecord.getDate().compareTo(date) <= 0) {
+                                iterator.remove();
+                            }
+                        }
+                    }
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                    break;
+            }
+        }
+        else if(command.contains("timestamp")){
+            String[] splitCommand = command.split(" ");
+            String comparisonOperator = splitCommand[1];
+            String timestamp = splitCommand[2];
+            switch (comparisonOperator){
+                case "=":
+                    if (filteredLogRecords.isEmpty()) {
+                        for (LogRecord logRecord : logRecords) {
+                            if (logRecord.getTimestamp().equals(timestamp)) {
+                                filteredLogRecords.add(logRecord);
+                            }
+                        }
+                    }
+                    else {
+                        Iterator<LogRecord> iterator = filteredLogRecords.iterator();
+                        while (iterator.hasNext()) {
+                            LogRecord logRecord = iterator.next();
+                            if (!logRecord.getTimestamp().equals(timestamp)) {
+                                iterator.remove();
+                            }
+                        }
+                    }
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                    break;
+                case "<":
+                    if (filteredLogRecords.isEmpty()) {
+                        for (LogRecord logRecord : logRecords) {
+                            if (logRecord.getTimestamp().compareTo(timestamp) < 0) {
+                                filteredLogRecords.add(logRecord);
+                            }
+                        }
+                    }
+                    else {
+                        Iterator<LogRecord> iterator = filteredLogRecords.iterator();
+                        while (iterator.hasNext()) {
+                            LogRecord logRecord = iterator.next();
+                            if (logRecord.getTimestamp().compareTo(timestamp) >= 0) {
+                                iterator.remove();
+                            }
+                        }
+                    }
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                    break;
+                case ">":
+                    if (filteredLogRecords.isEmpty()) {
+                        for (LogRecord logRecord : logRecords) {
+                            if (logRecord.getTimestamp().compareTo(timestamp) > 0) {
+                                filteredLogRecords.add(logRecord);
+                            }
+                        }
+                    }
+                    else {
+                        Iterator<LogRecord> iterator = filteredLogRecords.iterator();
+                        while (iterator.hasNext()) {
+                            LogRecord logRecord = iterator.next();
+                            if (logRecord.getTimestamp().compareTo(timestamp) <= 0) {
+                                iterator.remove();
+                            }
+                        }
+                    }
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                    break;
+            }
         }
     }
 
@@ -206,90 +372,195 @@ public class LogAnalysisController implements Initializable {
         boolean resetList = true;
         switch (selected) {
             case "Date":
-                logRecords.sort(new DateComparator());
-                for (LogRecord logRecord : logRecords) {
-                    if (resetList) {
-                        ta.setText(logRecord.toString());
-                        resetList = false;
-                    } else {
-                        ta.setText(ta.getText() + logRecord);
+                if(filteredLogRecords.isEmpty()) {
+                    logRecords.sort(new DateComparator());
+                    for (LogRecord logRecord : logRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                }
+                else {
+                    filteredLogRecords.sort(new DateComparator());
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
                     }
                 }
                 break;
             case "Time":
-                logRecords.sort(new TimeComparator());
-                for (LogRecord logRecord : logRecords) {
-                    if (resetList) {
-                        ta.setText(logRecord.toString());
-                        resetList = false;
-                    } else {
-                        ta.setText(ta.getText() + logRecord);
+                if(filteredLogRecords.isEmpty()) {
+                    logRecords.sort(new TimeComparator());
+                    for (LogRecord logRecord : logRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
                     }
                 }
+                else {
+                    filteredLogRecords.sort(new TimeComparator());
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                }
+
                 break;
             case "Timestamp":
-                logRecords.sort(new TimestampComparator());
-                for (LogRecord logRecord : logRecords) {
-                    if (resetList) {
-                        ta.setText(logRecord.toString());
-                        resetList = false;
-                    } else {
-                        ta.setText(ta.getText() + logRecord);
+                if(filteredLogRecords.isEmpty()) {
+                    logRecords.sort(new TimestampComparator());
+                    for (LogRecord logRecord : logRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                }
+                else {
+                    filteredLogRecords.sort(new TimestampComparator());
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
                     }
                 }
                 break;
             case "IPAddress":
-                logRecords.sort(new IPAddressComparator());
-                for (LogRecord logRecord : logRecords) {
-                    if (resetList) {
-                        ta.setText(logRecord.toString());
-                        resetList = false;
-                    } else {
-                        ta.setText(ta.getText() + logRecord);
+                if(filteredLogRecords.isEmpty()) {
+                    logRecords.sort(new IPAddressComparator());
+                    for (LogRecord logRecord : logRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                }
+                else {
+                    filteredLogRecords.sort(new IPAddressComparator());
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
                     }
                 }
                 break;
             case "Username":
-                logRecords.sort(new UsernameComparator());
-                for (LogRecord logRecord : logRecords) {
-                    if (resetList) {
-                        ta.setText(logRecord.toString());
-                        resetList = false;
-                    } else {
-                        ta.setText(ta.getText() + logRecord);
+                if(filteredLogRecords.isEmpty()) {
+                    logRecords.sort(new UsernameComparator());
+                    for (LogRecord logRecord : logRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                }
+                else {
+                    filteredLogRecords.sort(new UsernameComparator());
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
                     }
                 }
                 break;
             case "Role":
-                logRecords.sort(new RoleComparator());
-                for (LogRecord logRecord : logRecords) {
-                    if (resetList) {
-                        ta.setText(logRecord.toString());
-                        resetList = false;
-                    } else {
-                        ta.setText(ta.getText() + logRecord);
+                if(filteredLogRecords.isEmpty()) {
+                    logRecords.sort(new RoleComparator());
+                    for (LogRecord logRecord : logRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                }
+                else {
+                    filteredLogRecords.sort(new RoleComparator());
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
                     }
                 }
                 break;
             case "URL":
-                logRecords.sort(new URLComparator());
-                for (LogRecord logRecord : logRecords) {
-                    if (resetList) {
-                        ta.setText(logRecord.toString());
-                        resetList = false;
-                    } else {
-                        ta.setText(ta.getText() + logRecord);
+                if(filteredLogRecords.isEmpty()) {
+                    logRecords.sort(new URLComparator());
+                    for (LogRecord logRecord : logRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                }
+                else {
+                    filteredLogRecords.sort(new URLComparator());
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
                     }
                 }
                 break;
             case "Description":
-                logRecords.sort(new DescriptionComparator());
-                for (LogRecord logRecord : logRecords) {
-                    if (resetList) {
-                        ta.setText(logRecord.toString());
-                        resetList = false;
-                    } else {
-                        ta.setText(ta.getText() + logRecord);
+                if(filteredLogRecords.isEmpty()) {
+                    logRecords.sort(new DescriptionComparator());
+                    for (LogRecord logRecord : logRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
+                    }
+                }
+                else {
+                    filteredLogRecords.sort(new DescriptionComparator());
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        if (resetList) {
+                            ta.setText(logRecord.toString());
+                            resetList = false;
+                        } else {
+                            ta.setText(ta.getText() + logRecord);
+                        }
                     }
                 }
                 break;
