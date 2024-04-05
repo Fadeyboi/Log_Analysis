@@ -25,17 +25,17 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="481.0" layoutY="37.0" mnemonicParsing="false" text="Save">
+      <Button fx:id="saveBtn" layoutX="480.0" layoutY="37.0" mnemonicParsing="false" onAction="#saveButtonAction" text="Save">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="540.0" layoutY="37.0" mnemonicParsing="false" text="Load">
+      <Button layoutX="540.0" layoutY="37.0" mnemonicParsing="false" onAction="#loadButtonAction" text="Load">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="599.0" layoutY="37.0" mnemonicParsing="false" text="Reset">
+      <Button layoutX="600.0" layoutY="37.0" mnemonicParsing="false" text="Reset">
          <font>
             <Font size="14.0" />
          </font>

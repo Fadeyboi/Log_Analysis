@@ -3,49 +3,36 @@ package log_analysis.log_analysis;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+
+
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 
 
-public class LogAnalysisController implements Initializable {
+public class LogAnalysisController implements Initializable, Serializable {
     @FXML
-    private TextArea ta;
+    private transient TextArea ta;
     @FXML
-    private ComboBox<String> cb;
+    private transient ComboBox<String> cb;
     @FXML
-    private Button filterBtn;
-    @FXML
-    private TextField commandField;
+    private transient TextField commandField;
     private ArrayList<LogRecord> logRecords = new ArrayList<>();
     private ArrayList<LogRecord> filteredLogRecords = new ArrayList<>();
+    private ArrayList<ArrayList<LogRecord>> history = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList<String> filePaths = FilePathController.getFilePaths();
-        for (String filePath : filePaths) {
-            File inputFile = new File(filePath);
-            try (Scanner input = new Scanner(inputFile)) {
-                while (input.hasNext()) {
-                    String currentLine = input.nextLine();
-                    LogRecord record = new LogRecord(currentLine);
-                    logRecords.add(record);
-                }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        logRecords = FilePathController.getLogRecords();
         for (LogRecord logRecord : logRecords) {
             ta.setText(ta.getText() + logRecord);
         }
         cb.getItems().addAll("Date", "Time", "Timestamp", "IPAddress", "Username", "Role", "URL", "Description");
-
+        history.add(logRecords);
     }
 
     @FXML
@@ -58,7 +45,6 @@ public class LogAnalysisController implements Initializable {
             String commandAttribute = splitAttribute[0];
             String filterAttribute = splitCommand[1];
             filterAttribute = filterAttribute.substring(1, filterAttribute.length()-1);
-            System.out.println(filterAttribute);
             switch (commandAttribute.trim()){
                 case "url":
                     if (filteredLogRecords.isEmpty()) {
@@ -364,6 +350,7 @@ public class LogAnalysisController implements Initializable {
                     break;
             }
         }
+        history.add(filteredLogRecords);
     }
 
     @FXML
@@ -566,6 +553,71 @@ public class LogAnalysisController implements Initializable {
                 break;
         }
     }
+
+    @FXML
+    public void saveButtonAction(ActionEvent e) throws IOException {
+        String filePath = ScreenController.showFilePath();
+        if(filePath == null || filePath.trim().isEmpty()){
+            showAlert();
+        }
+        else {
+            File file = new File(filePath);
+            try (FileOutputStream fos = new FileOutputStream(file)) {
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(this);
+            } catch (FileNotFoundException error) {
+                try {
+                    showAlert();
+                } catch (IOException ex) {
+                    System.out.println("happened");
+                }
+            }
+        }
+    }
+
+    @FXML
+    public void loadButtonAction(ActionEvent e) throws IOException {
+        String filePath = ScreenController.showFilePath();
+        if(filePath == null || filePath.trim().isEmpty()){
+            showAlert();
+        }
+        else {
+            File file = new File(filePath);
+            try (FileInputStream fis = new FileInputStream(file)) {
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                LogAnalysisController lac = (LogAnalysisController) ois.readObject();
+                this.logRecords = lac.logRecords;
+                this.filteredLogRecords = lac.filteredLogRecords;
+                this.history = lac.history;
+                ta.setText("");
+                if(filteredLogRecords.isEmpty()) {
+                    for (LogRecord logRecord : logRecords) {
+                        ta.setText(ta.getText() + logRecord);
+                    }
+                }
+                else {
+                    for (LogRecord logRecord : filteredLogRecords) {
+                        ta.setText(ta.getText() + logRecord);
+                    }
+                }
+            } catch (FileNotFoundException error) {
+                try {
+                    showAlert();
+                } catch (IOException ex) {
+                    System.out.println("happened");
+                }
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
+    public void showAlert() throws IOException {
+        ScreenController.showAlert();
+    }
+
+
+
 }
 
 class DateComparator implements Comparator<LogRecord> {

@@ -1,6 +1,8 @@
 package log_analysis.log_analysis;
 
-public class LogRecord {
+import java.io.Serializable;
+
+public class LogRecord implements Serializable {
     private String date;
     private String time;
     private String timestamp;

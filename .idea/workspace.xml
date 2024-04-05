@@ -4,10 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f9806cb-509e-4cd8-b37e-ae0d7b9d99bf" name="Changes" comment="Added a sorting function using a comboBox">
+    <list default="true" id="3f9806cb-509e-4cd8-b37e-ae0d7b9d99bf" name="Changes" comment="Added a filtering function">
+      <change afterPath="$PROJECT_DIR$/ddd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/ErrorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/SerializeFileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/file-path-error.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/serialize-file-path.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/FilePathController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/FilePathController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/ScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/file-path.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/file-path.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log-analysis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log-analysis.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +34,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Fadeyboi"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Fadeyboi&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -56,24 +66,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.LogAnalysis.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.LogAnalysis.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;public&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -92,7 +103,8 @@
       <workItem from="1712085143747" duration="271000" />
       <workItem from="1712086110454" duration="11001000" />
       <workItem from="1712098931897" duration="3690000" />
-      <workItem from="1712255482861" duration="14974000" />
+      <workItem from="1712255482861" duration="25179000" />
+      <workItem from="1712283853871" duration="2053000" />
     </task>
     <task id="LOCAL-00001" summary="Added a sorting function using a comboBox">
       <option name="closed" value="true" />
@@ -102,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712269047148</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added a filtering function">
+      <option name="closed" value="true" />
+      <created>1712271176309</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712271176309</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +131,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added a sorting function using a comboBox" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a sorting function using a comboBox" />
+    <MESSAGE value="Added a filtering function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a filtering function" />
   </component>
 </project>
