@@ -35,12 +35,12 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="600.0" layoutY="37.0" mnemonicParsing="false" text="Reset">
+      <Button layoutX="600.0" layoutY="37.0" mnemonicParsing="false" onAction="#resetButtonAction" text="Reset">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="660.0" layoutY="37.0" mnemonicParsing="false" text="Back">
+      <Button layoutX="660.0" layoutY="37.0" mnemonicParsing="false" onAction="#backButtonAction" text="Back">
          <font>
             <Font size="14.0" />
          </font>

@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f9806cb-509e-4cd8-b37e-ae0d7b9d99bf" name="Changes" comment="Added a filtering function">
-      <change afterPath="$PROJECT_DIR$/ddd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/ErrorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/SerializeFileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/file-path-error.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/serialize-file-path.fxml" afterDir="false" />
+    <list default="true" id="3f9806cb-509e-4cd8-b37e-ae0d7b9d99bf" name="Changes" comment="Added a serialization feature that enables you to save and load filtered settings by giving the file path.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/FilePathController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/FilePathController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogAnalysisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/LogRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/ScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/ScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/file-path.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/file-path.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/SerializeFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/log_analysis/log_analysis/SerializeFileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log-analysis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log_analysis/log_analysis/log-analysis.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +95,7 @@
       <workItem from="1712086110454" duration="11001000" />
       <workItem from="1712098931897" duration="3690000" />
       <workItem from="1712255482861" duration="25179000" />
-      <workItem from="1712283853871" duration="2053000" />
+      <workItem from="1712283853871" duration="4170000" />
     </task>
     <task id="LOCAL-00001" summary="Added a sorting function using a comboBox">
       <option name="closed" value="true" />
@@ -122,7 +113,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712271176309</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added a serialization feature that enables you to save and load filtered settings by giving the file path.">
+      <option name="closed" value="true" />
+      <created>1712286009463</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712286009463</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +131,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added a sorting function using a comboBox" />
     <MESSAGE value="Added a filtering function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a filtering function" />
+    <MESSAGE value="Added a serialization feature that enables you to save and load filtered settings by giving the file path." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a serialization feature that enables you to save and load filtered settings by giving the file path." />
   </component>
 </project>

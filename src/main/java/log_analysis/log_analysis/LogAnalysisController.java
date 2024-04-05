@@ -350,7 +350,8 @@ public class LogAnalysisController implements Initializable, Serializable {
                     break;
             }
         }
-        history.add(filteredLogRecords);
+        history.add(new ArrayList<>(filteredLogRecords));
+        commandField.setText("");
     }
 
     @FXML
@@ -359,8 +360,9 @@ public class LogAnalysisController implements Initializable, Serializable {
         boolean resetList = true;
         switch (selected) {
             case "Date":
+                logRecords.sort(new DateComparator());
+                filteredLogRecords.sort(new DateComparator());
                 if(filteredLogRecords.isEmpty()) {
-                    logRecords.sort(new DateComparator());
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -371,7 +373,6 @@ public class LogAnalysisController implements Initializable, Serializable {
                     }
                 }
                 else {
-                    filteredLogRecords.sort(new DateComparator());
                     for (LogRecord logRecord : filteredLogRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -383,8 +384,9 @@ public class LogAnalysisController implements Initializable, Serializable {
                 }
                 break;
             case "Time":
+                logRecords.sort(new TimeComparator());
+                filteredLogRecords.sort(new TimeComparator());
                 if(filteredLogRecords.isEmpty()) {
-                    logRecords.sort(new TimeComparator());
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -395,7 +397,6 @@ public class LogAnalysisController implements Initializable, Serializable {
                     }
                 }
                 else {
-                    filteredLogRecords.sort(new TimeComparator());
                     for (LogRecord logRecord : filteredLogRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -408,8 +409,10 @@ public class LogAnalysisController implements Initializable, Serializable {
 
                 break;
             case "Timestamp":
+                logRecords.sort(new TimestampComparator());
+                filteredLogRecords.sort(new TimestampComparator());
                 if(filteredLogRecords.isEmpty()) {
-                    logRecords.sort(new TimestampComparator());
+
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -420,7 +423,7 @@ public class LogAnalysisController implements Initializable, Serializable {
                     }
                 }
                 else {
-                    filteredLogRecords.sort(new TimestampComparator());
+
                     for (LogRecord logRecord : filteredLogRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -608,6 +611,36 @@ public class LogAnalysisController implements Initializable, Serializable {
                 }
             } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
+            }
+        }
+    }
+
+    @FXML
+    public void resetButtonAction(ActionEvent e){
+        filteredLogRecords.clear();
+        ta.setText("");
+        for (LogRecord logRecord : logRecords) {
+            ta.setText(ta.getText() + logRecord);
+        }
+    }
+
+    @FXML
+    public void backButtonAction(ActionEvent e){
+        if (history.size() != 1) {
+            if (history.get(history.size() - 2) != logRecords){
+                filteredLogRecords = history.remove(history.size() - 2);
+                ta.setText("");
+                for (LogRecord logRecord : filteredLogRecords) {
+                    ta.setText(ta.getText() + logRecord);
+                }
+            }
+            else{
+                history.removeLast();
+                filteredLogRecords.clear();
+                ta.setText("");
+                for (LogRecord logRecord : logRecords) {
+                    ta.setText(ta.getText() + logRecord);
+                }
             }
         }
     }
