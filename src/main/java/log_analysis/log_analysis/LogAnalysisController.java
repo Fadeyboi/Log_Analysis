@@ -361,7 +361,6 @@ public class LogAnalysisController implements Initializable, Serializable {
         switch (selected) {
             case "Date":
                 logRecords.sort(new DateComparator());
-                filteredLogRecords.sort(new DateComparator());
                 if(filteredLogRecords.isEmpty()) {
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
@@ -373,6 +372,7 @@ public class LogAnalysisController implements Initializable, Serializable {
                     }
                 }
                 else {
+                    filteredLogRecords.sort(new DateComparator());
                     for (LogRecord logRecord : filteredLogRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -385,7 +385,6 @@ public class LogAnalysisController implements Initializable, Serializable {
                 break;
             case "Time":
                 logRecords.sort(new TimeComparator());
-                filteredLogRecords.sort(new TimeComparator());
                 if(filteredLogRecords.isEmpty()) {
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
@@ -397,6 +396,7 @@ public class LogAnalysisController implements Initializable, Serializable {
                     }
                 }
                 else {
+                    filteredLogRecords.sort(new TimeComparator());
                     for (LogRecord logRecord : filteredLogRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -410,9 +410,7 @@ public class LogAnalysisController implements Initializable, Serializable {
                 break;
             case "Timestamp":
                 logRecords.sort(new TimestampComparator());
-                filteredLogRecords.sort(new TimestampComparator());
                 if(filteredLogRecords.isEmpty()) {
-
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -423,7 +421,7 @@ public class LogAnalysisController implements Initializable, Serializable {
                     }
                 }
                 else {
-
+                    filteredLogRecords.sort(new TimestampComparator());
                     for (LogRecord logRecord : filteredLogRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -435,8 +433,8 @@ public class LogAnalysisController implements Initializable, Serializable {
                 }
                 break;
             case "IPAddress":
+                logRecords.sort(new IPAddressComparator());
                 if(filteredLogRecords.isEmpty()) {
-                    logRecords.sort(new IPAddressComparator());
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -459,8 +457,8 @@ public class LogAnalysisController implements Initializable, Serializable {
                 }
                 break;
             case "Username":
+                logRecords.sort(new UsernameComparator());
                 if(filteredLogRecords.isEmpty()) {
-                    logRecords.sort(new UsernameComparator());
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -483,8 +481,8 @@ public class LogAnalysisController implements Initializable, Serializable {
                 }
                 break;
             case "Role":
+                logRecords.sort(new RoleComparator());
                 if(filteredLogRecords.isEmpty()) {
-                    logRecords.sort(new RoleComparator());
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -507,8 +505,8 @@ public class LogAnalysisController implements Initializable, Serializable {
                 }
                 break;
             case "URL":
+                logRecords.sort(new URLComparator());
                 if(filteredLogRecords.isEmpty()) {
-                    logRecords.sort(new URLComparator());
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
@@ -531,8 +529,8 @@ public class LogAnalysisController implements Initializable, Serializable {
                 }
                 break;
             case "Description":
+                logRecords.sort(new DescriptionComparator());
                 if(filteredLogRecords.isEmpty()) {
-                    logRecords.sort(new DescriptionComparator());
                     for (LogRecord logRecord : logRecords) {
                         if (resetList) {
                             ta.setText(logRecord.toString());
